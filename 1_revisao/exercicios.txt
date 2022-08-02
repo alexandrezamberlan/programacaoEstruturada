@@ -1,0 +1,6 @@
+1) Fazer um programa em C++, populando um vetor (tamanho N) com números aleatórios de 0 a 100. Na sequência, o vetor deve ser exibido, bem como o maior e o menor valor inseridos.
+
+2) Fazer um programa em C++, que recebe o vetor populado e exibido no código anterior, fazendo a operação de ordenação no vetor. Ao final, mostrar o vetor ordenado.
+
+3) Fazer um programa em C++ que receba 5 nomes de pessoas. Entretanto, antes dos nomes serem inseridos no vetor, os nomes devem ser transformados em maiúsculos e verificados
+se já foram inseridos anteriormente na estrutura.
