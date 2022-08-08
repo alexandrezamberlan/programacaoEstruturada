@@ -7,6 +7,47 @@
  * vendas acima de R$2.000,00. Escrever o código do vendedor, o total 
  * de suas vendas, seu salário fixo e seu salário total.
  */
+ #include <iostream>
+using namespace std;
+
+int main() {
+  cout << "Exercício 1\n";
+
+  //receber dados de um vendedor
+  int codigo;
+  float salarioFixo;
+  float totalVendas;
+  float comissao;
+  float salarioTotal;
+
+  cout << "Digite seu código: ";
+  cin >> codigo;
+
+  cout << "Salário fixo: ";
+  cin >> salarioFixo;
+
+  cout << "Total de vendas: ";
+  cin >> totalVendas;
+
+  if (totalVendas <= 1000) {
+    //totalVendas - 100
+    //comissao    - 3
+    comissao = (totalVendas * 3 / 100) + totalVendas;
+  } else if (totalVendas <= 2000) {
+    //totalVendas - 100
+    //comissao    - 5
+    comissao = (totalVendas * 5 / 100) + totalVendas;
+  } else {
+    //totalVendas - 100
+    //comissao    - 10
+    comissao = (totalVendas * 10 / 100) + totalVendas;
+  }
+
+  salarioTotal = salarioFixo + comissao;
+  cout << "Seu salário total é: " << salarioTotal << endl;
+  
+  return 0;
+}
 
  /**
  * 2 - Escrever um algoritmo para ler quatro valores inteiros, calcular a sua média, e 
