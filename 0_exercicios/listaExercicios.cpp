@@ -53,6 +53,61 @@ int main() {
  * 2 - Escrever um algoritmo para ler quatro valores inteiros, calcular a sua média, e 
  * escrever na tela os que são superiores à média.
  */ 
+
+ #include <iostream>
+
+using namespace std;
+
+int main() {
+  int valor1, valor2, valor3, valor4;
+  int somaValores;
+  float media;
+  
+  cout << "Digite o primeiro valor: ";  
+  cin >> valor1;
+
+  cout << "Digite o segundo valor: ";
+  cin >> valor2;
+
+  cout << "Digite o terceiro valor: ";
+  cin >> valor3;
+
+  cout << "Digite o quarto valor: ";
+  cin >> valor4;
+
+  somaValores = valor1 + valor2 + valor3 + valor4;
+  media = somaValores / 4;
+
+  cout << "A soma dos valores: " << somaValores << endl;
+  cout << "A média dos valores: " << media << "\n";
+
+  return 0;
+}
+
+
+========
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int vetor[4];
+  int somaValores = 0;
+  float media;
+  
+  for (int i = 0; i < 4; i++) {
+    cout << "Digite o valor " << (i+1) << ": ";
+    cin >> vetor[i];
+    somaValores = somaValores + vetor[i];
+  }
+  media = somaValores / 4;
+  
+   cout << "A soma dos valores: " << somaValores << endl;
+  cout << "A média dos valores: " << media << "\n";
+  
+  return 0;
+}
  
  /**
  * 3 - Escreva um algoritmo para calcular o reajuste salarial de uma empresa que possui 1000 
