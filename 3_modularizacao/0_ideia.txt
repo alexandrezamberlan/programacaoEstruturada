@@ -1,0 +1,34 @@
+Modularização é um conceito de programação avançada
+    - decomposição funcional
+    - dividir para conquistar
+        - escreva uma vez, invoque n vezes
+        - facilidade de manutenção
+        - facilidade de trabalho em equipe
+
+
+    tipos:
+        métodos sem retorno - ao final de sua execução, o controle do programa passa para a próxima linha
+            - palavra reservada void
+        métodos com retorno - ap fomaç de sua execução, o controle volta para o ponto da invocação, trazendo um valor
+            - palavra reservada no corpo do método - return
+
+Exemplo:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int numero;
+
+    cout << "Digite um numero inteiro:"; //cout é um método sem retorno e sem parametro
+    cin >> numero; //cin é um método sem retorno e sem parametro
+
+    system("cls"); //system é um método sem retorno mas com 1 parâmetro
+
+
+    printf("Teste"); //printf é um método sem retorno mas com 1 parâmetro
+
+    string frase = paraMaiusculo("eric");
+
+
+    return 1;
+}

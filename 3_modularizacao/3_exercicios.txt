@@ -1,0 +1,11 @@
+Construa programas que utilizem métodos adequados aos exercícios solicitados. Ou seja, implemente os métodos
+em uma arquivo específico .h e o incluo no ou nos programas pessoais.
+
+1) Faça um método que receba uma valor inteiro qualquer e que exiba se o valor passado no parâmetro é par ou ímpar.
+
+2) Faça um método que receba uma frase qualquer e exiba caracter por caracter, um abaixo do outro.
+
+3) Faça um método que receba dois valores inteiros e escreva na tela se o primeiro parâmetro é ou não múltiplo
+do segundo 
+
+4) Faça um método que receba um número inteiro entre 1 a 10 e o escreva em romanos.
