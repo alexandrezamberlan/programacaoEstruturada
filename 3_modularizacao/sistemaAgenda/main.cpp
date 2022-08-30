@@ -1,16 +1,15 @@
 #include <iostream> //cin e cout
-#include <string> //
+#include <string> 
+#include <stdio.h>
 #define TAM 10
 using namespace std; //omitir o std na frente do cin, por exemplo 
 
-typedef struct {
-    string nome;
-    string email;
-    string telefone; 
-} Contato; //tipo artificial construido pelo programador
+#include "util.h"
+
 
 int main() {
     Contato vetor[TAM];
+    inicializar(vetor,TAM);
     int qtdContatos = 0;
     int opcao;
     //montar o menu
@@ -25,12 +24,17 @@ int main() {
         cout << "6 - Sair\n";
         cout << "Opcao: ";
         cin >> opcao;
+        fflush(stdin);
 
         switch (opcao)
         {
             case 1:
                 cout << "INSERIR\n";
-
+                if (inserir(vetor, &qtdContatos)) {
+                    cout << "Contato cadastrado com sucesso\n";
+                } else {
+                    cout << "Problemas para cadastrar contato. Falta de espaco\n";
+                }
                 break;
             case 2:
                 cout << "REMOVER\n";
@@ -42,6 +46,11 @@ int main() {
                 break;
             case 4:
                 cout << "LISTAR\n";
+                if (listar(vetor, qtdContatos)) {
+                    cout << "Contatos cadastrados\n";
+                } else {
+                    cout << "Estrutura vazia\n";
+                }
 
                 break;
             case 5:
