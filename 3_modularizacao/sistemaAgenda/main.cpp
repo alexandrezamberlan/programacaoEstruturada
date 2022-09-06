@@ -38,11 +38,19 @@ int main() {
                 break;
             case 2:
                 cout << "REMOVER\n";
-
+                if (remover(vetor, &qtdContatos)) {
+                    cout << "Contato removido com sucesso\n";
+                } else {
+                    cout << "Contato nao removido. Ou estrutura vazia ou nao localizado.\n";
+                }
                 break;
             case 3:
                 cout << "ATUALIZAR\n";
-
+                if (atualizar(vetor, qtdContatos)) {
+                    cout << "Alteracao realizada com sucesso\n";
+                } else {
+                    cout << "Estrutura vazia\n";
+                }
                 break;
             case 4:
                 cout << "LISTAR\n";
