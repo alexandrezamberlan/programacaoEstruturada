@@ -69,8 +69,7 @@ bool inserir(Contato vetor[], int *qtd) {
             getline(cin, vetor[i].telefone);   
             break;        
         }
-    }
-    
+    }    
     return true;
 }
 
@@ -83,6 +82,26 @@ bool listar(Contato vetor[], int qtd) {
             cout << "Email: " << vetor[i].email << endl;
             cout << "Telefone: " << vetor[i].telefone << endl;
             cout << "--------------------------------------" << endl;
+        }
+    }
+    return true;
+}
+
+bool pesquisar(Contato vetor[], int qtd) {
+    if (qtd == 0) return false;
+    string nomePesquisa;
+    cout << "Digite parte do nome ou nome completo: ";
+    getline(cin,nomePesquisa);
+    nomePesquisa = paraMaiusculo(nomePesquisa);
+
+    for (int i = 0; i < qtd; i++) {
+        if (vetor[i].nome != "") {
+            if (vetor[i].nome.find(nomePesquisa) != -1) {
+                cout << "Nome: " << vetor[i].nome << endl;
+                cout << "Email: " << vetor[i].email << endl;
+                cout << "Telefone: " << vetor[i].telefone << endl;
+                cout << "--------------------------------------" << endl;
+            }
         }
     }
     return true;

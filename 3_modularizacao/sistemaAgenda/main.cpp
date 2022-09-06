@@ -51,11 +51,14 @@ int main() {
                 } else {
                     cout << "Estrutura vazia\n";
                 }
-
                 break;
             case 5:
                 cout << "PESQUISAR\n";
-
+                if (pesquisar(vetor, qtdContatos)) {
+                    cout << "Pesquisa realizada com sucesso\n";
+                } else {
+                    cout << "Estrutura vazia\n";
+                }
                 break;
             case 6:
                 cout << "Obrigado por usar o sistema!\n";
@@ -66,6 +69,5 @@ int main() {
         }
         system("pause");
     }  while (opcao != 6);
-  
     return 1;
 }
