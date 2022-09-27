@@ -1,0 +1,8 @@
+100 alexandre   46
+101 pedro   54
+102 carlos 55
+103 joana   12
+104 carlos 45
+105 sofia 23
+106 gabriel 21
+107 douglas 20

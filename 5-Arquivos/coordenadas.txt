@@ -1,0 +1,5 @@
+-3 4 vermelha
+-1 1 vermelha
+-5 2 vermelha
+5 -4 azul
+1 -2 azul

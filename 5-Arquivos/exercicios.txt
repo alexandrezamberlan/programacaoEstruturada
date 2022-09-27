@@ -1,0 +1,6 @@
+1) Fazer um programa em C que receba o nome do arquivo texto pelo usuário,
+abra esse arquivo linha a linha e o exiba na tela com todas as 
+palavras em maiúsculo.
+
+2) Fazer um programa em C que receba o nome do arquivo texto pelo usuário,
+abra esse arquivo linha a linha, conte e mostre a quantidades de palavras do arquivo.
