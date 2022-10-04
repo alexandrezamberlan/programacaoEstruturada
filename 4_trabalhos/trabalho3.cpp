@@ -48,11 +48,42 @@ void popularListaArquivo(Contato *lista, string nomeArquivo) {
 }
 
 void exibirLista(Contato *lista, int qtdContatos) {
-
+    cout << "Lista de Contatos\n";
     for (int i = 0; i < qtdContatos; i++) {
         cout << "Nome: " << lista[i].nome << " Email: " << lista[i].email << endl;
     }
 }
+
+void menu(Contato *lista, int qtdContatos) {
+    int opcao;
+    char tecla;
+    do {
+        system("clear");
+        cout << "MENU\n";
+        cout << "1 - Cadastrar contato\n";
+        cout << "2 - Listar contatos\n";
+        cout << "3 - Sair\n";
+        cout << "Opcao: ";
+        cin >> opcao;
+
+        switch (opcao)
+        {
+        case 1:
+            cout << "CADASTRO DE CONTATO\n";
+            break;
+        case 2:
+            cout << "LISTAGEM DE CONTATOS\n";
+            break;
+        default:
+            cout << "Opcao invalida!!\n";
+            break;
+        }
+
+        cout << "Tecle enter para continuar!";
+        
+    } while (opcao != 5);
+}
+
 
 int main() {
     Contato *lista;
@@ -65,9 +96,8 @@ int main() {
     //popular lista com dados do arquivo
     popularListaArquivo(lista,"dadosTrab3.csv");
 
-    //exibir lista
-    exibirLista(lista, quantidadeContatos);
-
+    //chamar menu
+    menu(lista, quantidadeContatos);
 
     return 1;
 }
