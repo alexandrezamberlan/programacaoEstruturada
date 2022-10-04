@@ -90,8 +90,8 @@ void cadastrarNaLista(Contato *lista, int *qtdContatos, string nomeArquivo) {
         *qtdContatos = *qtdContatos + 1;
 
         //adicionar no final do arquivo
+        procuradorEscrita << nome << ";" << email << endl;
     }
-    procuradorEscrita << nome << ";" << email << endl;
 
     procuradorEscrita.close();
 }
