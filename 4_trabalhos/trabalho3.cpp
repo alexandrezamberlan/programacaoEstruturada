@@ -48,7 +48,6 @@ void popularListaArquivo(Contato *lista, string nomeArquivo) {
 }
 
 void exibirLista(Contato *lista, int qtdContatos) {
-    cout << "Lista de Contatos\n";
     for (int i = 0; i < qtdContatos; i++) {
         cout << "Nome: " << lista[i].nome << " Email: " << lista[i].email << endl;
     }
@@ -56,9 +55,9 @@ void exibirLista(Contato *lista, int qtdContatos) {
 
 void menu(Contato *lista, int qtdContatos) {
     int opcao;
-    char tecla;
+    int tecla;
     do {
-        system("clear");
+        // system("clear");
         cout << "MENU\n";
         cout << "1 - Cadastrar contato\n";
         cout << "2 - Listar contatos\n";
@@ -73,15 +72,20 @@ void menu(Contato *lista, int qtdContatos) {
             break;
         case 2:
             cout << "LISTAGEM DE CONTATOS\n";
+            exibirLista(lista,qtdContatos);
+            break;
+        case 3:
+            
             break;
         default:
             cout << "Opcao invalida!!\n";
             break;
         }
 
-        cout << "Tecle enter para continuar!";
+        // cout << "Tecle enter para continuar!";
+        // cin >> tecla;
         
-    } while (opcao != 5);
+    } while (opcao != 3);
 }
 
 
