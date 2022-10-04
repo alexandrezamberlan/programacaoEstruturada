@@ -3,6 +3,9 @@
 #include <string>
 using namespace std;
 
+
+#include "util.h"
+
 typedef struct {
     string nome;
     string email;
@@ -53,37 +56,77 @@ void exibirLista(Contato *lista, int qtdContatos) {
     }
 }
 
-void menu(Contato *lista, int qtdContatos) {
+
+bool jaCadastrado(string nome, Contato *lista, int qtdContatos) {
+    for (int i = 0; i < qtdContatos; i++) {
+        if (lista[i].nome == nome) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void cadastrarNaLista(Contato *lista, int *qtdContatos, string nomeArquivo) {
+    ofstream procuradorEscrita;
+    string nome, email;
+    procuradorEscrita.open(nomeArquivo, ios::out | ios::app);
+    cout << "Contato sendo cadastrado na posicao " << *qtdContatos << endl;
+    do {
+        cout << "Digite seu nome completo: ";
+        getline(cin, nome);
+        nome = paraMaiusculo(nome);
+    } while (!validaNomeCompleto(nome));
+
+    cout << "Digite seu email: ";
+    cin >> email;
+
+
+    //teria que verificar se esse par nome e email já estão na lista
+    if (jaCadastrado(nome, lista, *qtdContatos)) {
+     cout << "Erro: contato ja cadastrado no sistema\n";   
+    } else {
+        lista[*qtdContatos].nome = nome;
+        lista[*qtdContatos].email = email;
+        *qtdContatos = *qtdContatos + 1;
+
+        //adicionar no final do arquivo
+    }
+    procuradorEscrita << nome << ";" << email << endl;
+
+    procuradorEscrita.close();
+}
+
+void menu(Contato *lista, int qtdContatos, string nomeArquivo) {
     int opcao;
     int tecla;
     do {
-        // system("clear");
+        system("cls");
         cout << "MENU\n";
         cout << "1 - Cadastrar contato\n";
         cout << "2 - Listar contatos\n";
         cout << "3 - Sair\n";
         cout << "Opcao: ";
         cin >> opcao;
+        cin.ignore();
 
         switch (opcao)
         {
         case 1:
             cout << "CADASTRO DE CONTATO\n";
+            cadastrarNaLista(lista, &qtdContatos, nomeArquivo);
             break;
         case 2:
             cout << "LISTAGEM DE CONTATOS\n";
             exibirLista(lista,qtdContatos);
             break;
-        case 3:
-            
+        case 3:            
             break;
         default:
             cout << "Opcao invalida!!\n";
             break;
         }
 
-        // cout << "Tecle enter para continuar!";
-        // cin >> tecla;
+        system("pause");
         
     } while (opcao != 3);
 }
@@ -92,16 +135,17 @@ void menu(Contato *lista, int qtdContatos) {
 int main() {
     Contato *lista;
     int quantidadeContatos;
+    string nomeArquivo = "dadosTrab3.csv";
 
     //descobrir quantos elementos ha no arquivo, para definir o tamanho da lista
-    quantidadeContatos = contarContatosArquivo("dadosTrab3.csv");
+    quantidadeContatos = contarContatosArquivo(nomeArquivo);
     lista = (Contato*)malloc(sizeof(Contato) * (quantidadeContatos + 100));
 
     //popular lista com dados do arquivo
-    popularListaArquivo(lista,"dadosTrab3.csv");
+    popularListaArquivo(lista,nomeArquivo);
 
     //chamar menu
-    menu(lista, quantidadeContatos);
+    menu(lista, quantidadeContatos, nomeArquivo);
 
     return 1;
 }
