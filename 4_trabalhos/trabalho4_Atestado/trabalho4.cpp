@@ -98,6 +98,15 @@ bool jaCadastrado(string email, Inscrito *lista, int qtdInscritos) {
     return false;
 }
 
+bool jaCadastradoMatricula(string matricula, string *lista, int qtdPresencas) {
+  for (int i = 0; i < qtdPresencas; i++) {
+    if (lista[i] == matricula) {
+      return true;
+    }
+  }
+  return false;
+}
+
 void cadastrarNaListaInscritos(Inscrito *lista, int *qtdInscritos, string nomeArquivo) {
     ofstream procuradorEscrita;
     string nome, email, matricula;
@@ -131,36 +140,41 @@ void cadastrarNaListaInscritos(Inscrito *lista, int *qtdInscritos, string nomeAr
 
 
 void cadastrarNaListaPresencas(string *lista, int *qtdPresencas, string nomeArquivo) {
-    ofstream procuradorEscrita;
-    string matricula, data;
-    procuradorEscrita.open(nomeArquivo, ios::out | ios::app);
-    
-    
-    do {
-        cout << "Presenca sendo cadastrado na posicao " << *qtdPresencas << endl;
-        
-        cout << "Digite sua matricula (-27 para sair): ";
-        cin >> matricula;
-        if (matricula == "-27") {
-	   procuradorEscrita.close();;
-	   return;
-	}
+  ofstream procuradorEscrita;
+  string matricula, data;
+  procuradorEscrita.open(nomeArquivo, ios::out | ios::app);
 
-        time_t t = time(nullptr);
-        tm* now = localtime(&t);
+  do {
+    cout << "Presenca sendo cadastrado na posicao " << *qtdPresencas << endl;
 
-        string dia = to_string(now->tm_mday);
-        string mes = to_string(now->tm_mon + 1);
-        string ano = to_string(now->tm_year + 1900);
+    cout << "Digite sua matricula (-27 para sair): ";
+    cin >> matricula;
+    if (matricula == "-27") {
+      procuradorEscrita.close();
+      return;
+    }
 
-        lista[*qtdPresencas] = matricula;    
-        *qtdPresencas = *qtdPresencas + 1;
+    if (jaCadastradoMatricula(matricula, lista, *qtdPresencas)) {
+      cout << "Erro: Matrícula ja registrada no evento\n";
+    } else {
+      time_t t = time(nullptr);
+      tm *now = localtime(&t);
 
-        //adicionar no final do arquivo
-        procuradorEscrita << matricula << ";" << dia << "/" << mes << "/" << ano << endl;
-	procuradorEscrita.close();
-    } while (true);
+      string dia = to_string(now->tm_mday);
+      string mes = to_string(now->tm_mon + 1);
+      string ano = to_string(now->tm_year + 1900);
+
+      lista[*qtdPresencas] = matricula;
+      *qtdPresencas = *qtdPresencas + 1;
+
+      // adicionar no final do arquivo
+      procuradorEscrita << matricula << ";" << dia << "/" << mes << "/" << ano << endl;
+
+      procuradorEscrita.close();
+    }
+  } while (true);
 }
+
 
 void menu(Inscrito *listaInscritos, string *listaPresencas, 
 int qtdInscritos, int qtdPresencas, string nomeArquivoInscritos, string nomeArquivoPresencas) {
