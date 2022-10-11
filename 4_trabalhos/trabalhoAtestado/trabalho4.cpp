@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
 using namespace std;
 
 #include "util.h"
@@ -28,10 +29,10 @@ int contarLinhasArquivo(string nomeArquivo) {
     return qtdLinhas;
 }
 
-void popularListaArquivo(Inscrito *lista, string nomeArquivo) {
+void popularListaArquivoInscritos(Inscrito *lista, string nomeArquivo) {
     ifstream procuradorLeitura;
     procuradorLeitura.open(nomeArquivo);
-    string nome, email;
+    string nome, email, matricula;
     int i = 0;
 
     string linha;
@@ -39,36 +40,67 @@ void popularListaArquivo(Inscrito *lista, string nomeArquivo) {
 		getline(procuradorLeitura,linha); //lendo a linha inteira
         if (linha == "") break;
 
-        int posicaoPontoVirgula = linha.find(";");
-        nome = linha.substr(0, posicaoPontoVirgula);
-        email = linha.substr(posicaoPontoVirgula + 1, 200);
+        int posicaoPrimeiroPontoVirgula = linha.find(";"); 
+        int posicaoUltimoPontoVirgula = linha.find_last_of(";"); 
+
+        nome = linha.substr(0, posicaoPrimeiroPontoVirgula);
+        email = linha.substr(posicaoPrimeiroPontoVirgula + 1, posicaoUltimoPontoVirgula);
+        matricula = linha.substr(posicaoUltimoPontoVirgula + 1, 200);
 
         lista[i].nome = nome;
         lista[i].email = email;
+        lista[i].matricula = matricula;
         i++;
 	}
     procuradorLeitura.close();
 }
 
-void exibirLista(Inscrito *lista, int qtdInscritos) {
+void popularListaArquivoPresencas(string *lista, string nomeArquivo) {
+    ifstream procuradorLeitura;
+    procuradorLeitura.open(nomeArquivo);
+    string matricula;
+    int i = 0;
+
+    string linha;
+    while (!procuradorLeitura.eof()) {
+		getline(procuradorLeitura,linha); //lendo a linha inteira
+        if (linha == "") break;
+
+        int posicaoPrimeiroPontoVirgula = linha.find(";");        
+
+        matricula = linha.substr(0, posicaoPrimeiroPontoVirgula);
+        
+        lista[i] = matricula;
+        
+        i++;
+	}
+    procuradorLeitura.close();
+}
+
+void exibirListaInscritos(Inscrito *lista, int qtdInscritos) {
     for (int i = 0; i < qtdInscritos; i++) {
-        cout << "Nome: " << lista[i].nome << " Email: " << lista[i].email << endl;
+        cout << "Matricula: " << lista[i].matricula << ". Nome: " << lista[i].nome << ". Email: " << lista[i].email << endl;
     }
 }
 
+void exibirListaPresencas(string *lista, int qtdPresencas) {
+    for (int i = 0; i < qtdPresencas; i++) {
+        cout << "Matricula: " << lista[i] << endl;
+    }
+}
 
-bool jaCadastrado(string nome, Inscrito *lista, int qtdInscritos) {
+bool jaCadastrado(string email, Inscrito *lista, int qtdInscritos) {
     for (int i = 0; i < qtdInscritos; i++) {
-        if (lista[i].nome == nome) {
+        if (lista[i].email == email) {
             return true;
         }
     }
     return false;
 }
 
-void cadastrarNaLista(Inscrito *lista, int *qtdInscritos, string nomeArquivo) {
+void cadastrarNaListaInscritos(Inscrito *lista, int *qtdInscritos, string nomeArquivo) {
     ofstream procuradorEscrita;
-    string nome, email;
+    string nome, email, matricula;
     procuradorEscrita.open(nomeArquivo, ios::out | ios::app);
     cout << "Inscrito sendo cadastrado na posicao " << *qtdInscritos << endl;
     do {
@@ -80,19 +112,54 @@ void cadastrarNaLista(Inscrito *lista, int *qtdInscritos, string nomeArquivo) {
     cout << "Digite seu email: ";
     cin >> email;
 
+    cout << "Digite sua matricula: ";
+    cin >> matricula;
+
 
     //teria que verificar se esse par nome e email já estão na lista
-    if (jaCadastrado(nome, lista, *qtdInscritos)) {
-     cout << "Erro: Inscrito ja cadastrado no sistema\n";   
+    if (jaCadastrado(email, lista, *qtdInscritos)) {
+        cout << "Erro: Email ja cadastrado no sistema\n";   
     } else {
+        cout << "entrada1" << endl;
         lista[*qtdInscritos].nome = nome;
         lista[*qtdInscritos].email = email;
+        lista[*qtdInscritos].matricula = matricula;
         *qtdInscritos = *qtdInscritos + 1;
+        cout << "entrada2" << endl;
+        //adicionar no final do arquivo
+        procuradorEscrita << nome << ";" << email << ";" << matricula << endl;
+    }
+    procuradorEscrita.close();
+}
+
+
+void cadastrarNaListaPresencas(string *lista, int *qtdPresencas, string nomeArquivo) {
+    ofstream procuradorEscrita;
+    string matricula, data;
+    procuradorEscrita.open(nomeArquivo, ios::out | ios::app);
+    
+    
+    do {
+        cout << "Presenca sendo cadastrado na posicao " << *qtdPresencas << endl;
+        
+        cout << "Digite sua matricula (-27 para sair): ";
+        cin >> matricula;
+        if (matricula == "-27") break;
+
+        time_t t = time(nullptr);
+        tm* now = localtime(&t);
+
+        string dia = to_string(now->tm_mday);
+        string mes = to_string(now->tm_mon + 1);
+        string ano = to_string(now->tm_year + 1900);
+
+        lista[*qtdPresencas] = matricula;    
+        *qtdPresencas = *qtdPresencas + 1;
 
         //adicionar no final do arquivo
-        procuradorEscrita << nome << ";" << email << endl;
-    }
+        procuradorEscrita << matricula << ";" << dia << "/" << mes << "/" << ano << endl;
 
+    } while (true);
     procuradorEscrita.close();
 }
 
@@ -156,7 +223,7 @@ int main() {
     listaInscritos = (Inscrito*)malloc(sizeof(Inscrito) * (quantidadeInscritos + 100));
     listaPresencas = (string*)malloc(sizeof(string) * (quantidadePresencas + 100));
 
-    //popular lista com dados do arquivo
+    //popular lista com dados do arquivo ao iniciar o sistema
     popularListaArquivoInscritos(listaInscritos,nomeArquivoInscritos);
     popularListaArquivoPresencas(listaPresencas,nomeArquivoPresencas);
     //chamar menu
