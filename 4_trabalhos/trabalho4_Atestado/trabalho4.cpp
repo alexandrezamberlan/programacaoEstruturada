@@ -51,7 +51,7 @@ void popularListaArquivoInscritos(Inscrito *lista, string nomeArquivo) {
         lista[i].email = email;
         lista[i].matricula = matricula;
         i++;
-	}
+    }
     procuradorLeitura.close();
 }
 
@@ -63,7 +63,7 @@ void popularListaArquivoPresencas(string *lista, string nomeArquivo) {
 
     string linha;
     while (!procuradorLeitura.eof()) {
-		getline(procuradorLeitura,linha); //lendo a linha inteira
+	getline(procuradorLeitura,linha); //lendo a linha inteira
         if (linha == "") break;
 
         int posicaoPrimeiroPontoVirgula = linha.find(";");        
@@ -141,7 +141,10 @@ void cadastrarNaListaPresencas(string *lista, int *qtdPresencas, string nomeArqu
         
         cout << "Digite sua matricula (-27 para sair): ";
         cin >> matricula;
-        if (matricula == "-27") break;
+        if (matricula == "-27") {
+	   procuradorEscrita.close();;
+	   return;
+	}
 
         time_t t = time(nullptr);
         tm* now = localtime(&t);
@@ -155,9 +158,8 @@ void cadastrarNaListaPresencas(string *lista, int *qtdPresencas, string nomeArqu
 
         //adicionar no final do arquivo
         procuradorEscrita << matricula << ";" << dia << "/" << mes << "/" << ano << endl;
-
+	procuradorEscrita.close();
     } while (true);
-    procuradorEscrita.close();
 }
 
 void menu(Inscrito *listaInscritos, string *listaPresencas, 
