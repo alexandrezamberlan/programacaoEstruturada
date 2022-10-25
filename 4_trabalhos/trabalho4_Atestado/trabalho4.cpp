@@ -152,11 +152,11 @@ void cadastrarNaListaPresencas(string *lista, int *qtdPresencas,
                                string nomeArquivo) {
   ofstream procuradorEscrita;
   string matricula, data;
-  procuradorEscrita.open(nomeArquivo, ios::out | ios::app);
 
   do {
+    procuradorEscrita.open(nomeArquivo, ios::out | ios::app);
     cout << "Presenca sendo cadastrado na posicao " << *qtdPresencas << endl;
-
+    cout << "vai que é tua\n";
     cout << "Digite sua matricula (-27 para sair): ";
     cin >> matricula;
     if (matricula == "-27") {
@@ -180,7 +180,6 @@ void cadastrarNaListaPresencas(string *lista, int *qtdPresencas,
       // adicionar no final do arquivo
       procuradorEscrita << matricula << ";" << dia << "/" << mes << "/" << ano
                         << endl;
-
       procuradorEscrita.close();
     }
   } while (true);
