@@ -7,3 +7,5 @@
 3) Fazer um programa em C ou C++ que popule e mostre um vetor com números inteiros e aleatórios. A quantidade de números deve ser igual ao tamanho do vetor inteiro definido. Em seguida, o programa deve receber um número inteiro qualquer e verificar quantas vezes ele aparece no vetor.
 
 4) Fazer um programa em C ou C++ que popule e mostre um vetor com números inteiros e aleatórios. A quantidade de números deve ser igual ao tamanho do vetor inteiro definido. Em seguida, o programa deve mostrar todos os números que aparecem mais de 2 vezes no vetor.
+
+5) Fazer um programa em C ou C++ que popule e mostre um vetor com números inteiros e aleatórios. A quantidade de números deve ser igual ao tamanho do vetor inteiro definido. Em seguida, o programa deve copiar todos os números que aparecem mais de 2 vezes no vetor para o vetorRepetidos. Ao final, vetorRepetidos deve ser exibido.
