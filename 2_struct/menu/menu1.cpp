@@ -22,6 +22,7 @@ typedef struct {
 
 int main() {
     vector<Glicemia> glicemias(TAMANHO);
+    int iGlicemia = -1;
 
     int opcao;
     do {
@@ -32,15 +33,33 @@ int main() {
         cout << "3 - Sair" << endl;
         cout << "Opcao: ";
         cin >> opcao;
+        fflush(stdin);
 
         switch (opcao) {
             case 1:
                 cout << "Cadastrar glicemia" << endl;
-
+                if (iGlicemia == TAMANHO - 1) {
+                    cout << "Nao e possivel cadastrar mais glicemias!" << endl;
+                    break;
+                }                
+                cout << "Nome: ";
+                iGlicemia++;
+                getline(cin, glicemias[iGlicemia].nome);
+                fflush(stdin);
+                cout << "Data: ";
+                cin >> glicemias[iGlicemia].data;
+                fflush(stdin);
+                cout << "Valor glicemia: ";
+                cin >> glicemias[iGlicemia].valor;
                 break;
             case 2:
                 cout << "Listar glicemias" << endl;
-                
+                for (int i = 0; i <= iGlicemia; i++) {
+                    cout << "Nome: " << glicemias[i].nome << endl;
+                    cout << "Data: " << glicemias[i].data << endl;
+                    cout << "Valor glicemia: " << glicemias[i].valor << endl;
+                    cout << endl;
+                }                
                 break;
             case 3:
                 cout << "Saindo..." << endl;
