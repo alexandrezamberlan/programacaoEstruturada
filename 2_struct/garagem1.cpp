@@ -7,7 +7,7 @@ using namespace std;
 
 typedef struct {
     string placa;
-    string data;
+    string dataE;
     string horaE;
     string horaS;
     int tempoPermanecia;
@@ -18,6 +18,16 @@ int main() {
     int opcao;
     Garagem lista[TAM];
     int totalVeiculos = 0;
+
+    //processo de inicialização da lista
+    for (int i = 0; i < TAM; i++) {
+        lista[i].placa = "";
+        lista[i].dataE = "";
+        lista[i].horaE = "";
+        lista[i].horaS = "";
+        lista[i].tempoPermanecia = 0;
+        lista[i].valor = 0.0;
+    }
     
     do {
         system("cls");
@@ -36,7 +46,25 @@ int main() {
             if (totalVeiculos == TAM) {
                 cout << "Garagem lotada\n";
             } else {
+                int i;
+                //processo que localiza uma vaga disponível na lista
+                for (i = 0; i < TAM; i++) {
+                    if (lista[i].placa == "") {
+                        break;
+                    }
+                }
+                // for (int i = 0; i < TAM && lista[i].placa != ""; i++);
+                //inserir o carro na lista garagem
+                cout << "Placa: ";
+                cin >> lista[i].placa;
 
+                cout << "Data entrada (dd/mm/aaaa): ";
+                cin >> lista[i].dataE;
+
+                cout << "Hora entrada (hh:mm): ";
+                cin >> lista[i].horaE;
+
+                totalVeiculos++;
             }
             break;
         case 2:
@@ -45,6 +73,13 @@ int main() {
                 cout << "Garagem vazia\n";
             } else {
                 //desafio
+                //solicitar a placa de veículo a ser retirado
+
+                //procurar pela placa na lista garagem
+
+                //se encontrado... inicializar as variáveis naquela posição
+
+                //se nao encontrado .... avisar que veículo não está na garagem...
             }
             break;
         case 3:
@@ -52,7 +87,12 @@ int main() {
             if (totalVeiculos == 0) {
                 cout << "Garagem vazia\n";
             } else {
-                
+                for (int i = 0; i < TAM; i++) {
+                    if (lista[i].placa != "") {
+                        cout << "Veiculo: " << lista[i].placa << endl;
+                        //exibir tempoPermanencia do veiculo ate o momento
+                    }
+                }
             }
             break;
         case 4:
