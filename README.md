@@ -1,6 +1,15 @@
 # Programação Estruturada
 Disciplina de Algoritmos 2 com códigos exemplos, exercícios e outros materiais de apoio.
 
+# Monitor da disciplina
+Leonardo Schroter - leonardo.schroter@ufn.edu.br
+
+O ideal é marcar por email e agendar um horário adequando para o aluno e para o monitor.
+
+### Horários disponíveis sem agendamento:
+    - Segunda-feira: Das 16h30min as 18h30min
+    - Quarta-feira: Das 16h30min as 18h30min
+
 # Documento de Apresentação da Disciplina
     1. Plano de Ensino
         - Conteúdo: 
