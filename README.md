@@ -7,8 +7,8 @@ Leonardo Schroter - leonardo.schroter@ufn.edu.br
 O ideal é marcar por email e agendar um horário adequando para o aluno e para o monitor.
 
 ### Horários disponíveis sem agendamento:
-    - Segunda-feira: Das 16h30min as 18h30min
-    - Quarta-feira: Das 16h30min as 18h30min
+    - Segunda-feira: Das 16h30min as 18h30min - Lab 101 P3
+    - Quarta-feira: Das 16h30min as 18h30min - Lab 101 P3
 
 # Documento de Apresentação da Disciplina
     1. Plano de Ensino
