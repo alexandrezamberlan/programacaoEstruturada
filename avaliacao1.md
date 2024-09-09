@@ -12,6 +12,6 @@
 Opcional: usar ou não métodos.
 
 5) Faça um programa em C ou C++ que manipule um vetor ou lista de nomes de pessoas. Entretanto, o programa main deve chamar ou invocar métodos:
-    a) popular vetor - este método deve receber como parâmetro o vetor de nomes e a quantidade de nomes que se deseja cadastra;
-    b) exibir conteúdo do vetor - este método deve receber como parâmetro o vetor de nomes e a quantidade de nomes existente no vetor.
-    c) localizar nome - este método deve receber como parâmetro o vetor de nomes, a quantidade de nomes e um nome de pesquisa. Ao final, o método deve retornar a posição do nome no vetor. Caso o nome não esteja no vetor, retornar -27.
+    1) popular vetor - este método deve receber como parâmetro o vetor de nomes e a quantidade de nomes que se deseja cadastra;
+    2) exibir conteúdo do vetor - este método deve receber como parâmetro o vetor de nomes e a quantidade de nomes existente no vetor.
+    3) localizar nome - este método deve receber como parâmetro o vetor de nomes, a quantidade de nomes e um nome de pesquisa. Ao final, o método deve retornar a posição do nome no vetor. Caso o nome não esteja no vetor, retornar -27.
